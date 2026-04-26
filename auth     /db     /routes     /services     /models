@@ -1,0 +1,2 @@
+git add auth db routes services models
+git commit -m "Restructure backend into modular auth/db/routes/services/models architecture" -m "This commit reorganizes the Eternal API Core backend into a clean, production-ready modular structure. The new layout separates authentication logic, database layer, routing, service logic, and data models into dedicated modules. This improves maintainability, scalability, and clarity for Phase 1 development, ensuring clean imports and a stable foundation for future Eternal modules."
