@@ -1,0 +1,2 @@
+git add README.md pyproject.toml
+git commit -m "Add README.md and pyproject.toml for Eternal API Core initialization" -m "This commit introduces the initial project documentation and Python project configuration. README.md outlines the Eternal API Core structure and purpose, while pyproject.toml establishes dependency management and prepares the backend for modular expansion, authentication, database integration, and future Eternal modules."
