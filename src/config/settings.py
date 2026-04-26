@@ -1,0 +1,2 @@
+git add src/config/settings.py
+git commit -m "Add settings.py configuration module for Eternal API Core" -m "This commit introduces the settings.py file under src/config/. It defines the backend configuration layer responsible for environment variables, database URL loading, JWT settings, and application constants. This module centralizes configuration management, enabling clean initialization, secure environment handling, and consistent access to core settings across the Eternal API Core backend."
