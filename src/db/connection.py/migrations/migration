@@ -1,0 +1,2 @@
+git add src/db
+git commit -m "Add database layer structure with connection module and migrations directory" -m "This commit introduces the foundational database layer for the Eternal API Core. It includes the db/ directory with connection.py for PostgreSQL engine/session initialization and a migrations/ folder for schema evolution. This structure prepares the backend for stable database connectivity, user table creation, and future migration scripts required for Phase 1 authentication and system expansion."
