@@ -1,0 +1,3 @@
+git add src/auth/password_service.py src/auth/jwt_service.py src/auth/auth_schemas.py src/auth/auth_controller.py src/auth/auth_routes.py
+git commit -m "Add full authentication module for Eternal API Core" -m "This commit introduces the complete authentication module under src/auth/. It includes password hashing, JWT token generation and decoding, request/response schemas, authentication controller logic, and API route definitions. This module forms the core of Phase 1 authentication, enabling secure user registration, login, identity validation, and protected route access across the Eternal API Core backend."
+
