@@ -1,0 +1,2 @@
+git add src/auth/routes.js
+git commit -m "Add Eternal Core auth module" -m "Implemented the authentication module for Eternal-API-Core. Added routes.js with operator login, JWT token issuing, token verification middleware, and operator‑role enforcement. This module forms the identity layer of Eternal Core, enabling secure access to rails, whitelist, gateway, and laws engine. It establishes the Operator identity as the highest authority in the Eternal system."
