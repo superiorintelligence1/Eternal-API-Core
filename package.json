@@ -1,0 +1,12 @@
+{
+  "name": "eternal-api-core",
+  "version": "1.0.0",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node --experimental-sqlite src/app.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
