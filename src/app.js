@@ -2,6 +2,7 @@ const express = require('express');
 const auth = require('./auth/routes');
 const railsRouter = require('./rails/routes');
 const whitelistRouter = require('./whitelist/routes');
+const tickerRouter = require('./ticker/routes');
 
 const app = express();
 app.use(express.json());
@@ -13,6 +14,7 @@ app.get('/health', function(req, res) {
 app.use('/auth', auth.router);
 app.use('/rails', railsRouter);
 app.use('/whitelist', whitelistRouter);
+app.use('/ticker', tickerRouter);
 
 app.use(function(err, req, res, next) {
   const status = err.statusCode || 500;
