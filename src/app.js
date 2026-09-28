@@ -3,6 +3,7 @@ const auth = require('./auth/routes');
 const railsRouter = require('./rails/routes');
 const whitelistRouter = require('./whitelist/routes');
 const tickerRouter = require('./ticker/routes');
+const vaultsRouter = require('./vaults/routes');
 
 const app = express();
 app.use(express.json());
@@ -15,6 +16,7 @@ app.use('/auth', auth.router);
 app.use('/rails', railsRouter);
 app.use('/whitelist', whitelistRouter);
 app.use('/ticker', tickerRouter);
+app.use('/vaults', vaultsRouter);
 
 app.use(function(err, req, res, next) {
   const status = err.statusCode || 500;
@@ -25,3 +27,4 @@ const PORT = process.env.PORT || 5061;
 app.listen(PORT, function() {
   console.log('[eternal-api-core] listening on ' + PORT);
 });
+
