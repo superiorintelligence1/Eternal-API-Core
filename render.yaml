@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: eternal-api-core
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node --experimental-sqlite src/app.js
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true
+      - key: NODE_VERSION
+        value: 22
+

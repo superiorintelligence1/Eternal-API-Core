@@ -28,6 +28,15 @@ app.use(function(err, req, res, next) {
 });
 
 const PORT = process.env.PORT || 8080;
+const fs = require('node:fs');
+const path = require('node:path');
+const dbPath = path.join(__dirname, '..', 'eternal.db');
+if (!fs.existsSync(dbPath)) {
+  console.log('[eternal-api-core] First run — loading vaults...');
+  require('./vaults/loader.js');
+}
+
+
 app.listen(PORT, function() {
   console.log('[eternal-api-core] listening on ' + PORT);
 });

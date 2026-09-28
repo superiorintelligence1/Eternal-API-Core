@@ -1,7 +1,9 @@
 const jwt = require('jsonwebtoken');
 
-const SECRET = process.env.JWT_SECRET || 'eternal-dev-secret-change-me';
-
+const SECRET = process.env.JWT_SECRET;
+if (!SECRET) {
+  throw new Error('JWT_SECRET env var is required');
+}
 function requireAuth(req, res, next) {
   const header = req.headers.authorization || '';
   const parts = header.split(' ');
