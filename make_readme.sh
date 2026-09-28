@@ -1,3 +1,5 @@
+#!/bin/bash
+cat > README.md << 'ENDOFFILE'
 # Eternal API Core
 
 A full-stack demo: Node.js + Express + SQLite backend with JWT-authenticated REST API and a dark-themed browser dashboard.
@@ -38,3 +40,7 @@ Login with username: don  password: eternal
 ## Status
 
 Portfolio project. Symbolic worldbuilding dashboard with real backend infrastructure.
+ENDOFFILE
+echo "README.md created:"
+wc -l README.md
+
