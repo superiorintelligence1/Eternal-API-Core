@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Eternal Hub</title>
+<style>
+  body { margin:0; background:#05060a; color:#e8e8e8; font-family:system-ui,sans-serif; }
+  header { padding:20px; text-align:center; border-bottom:1px solid #1c2030; }
+  h1 { color:#f5c542; letter-spacing:4px; margin:0; font-size:1.6rem; }
+  .sub { color:#7a8aaa; font-size:0.85rem; margin-top:6px; }
+  #login { display:flex; gap:8px; justify-content:center; padding:16px; }
+  input,button { padding:10px; background:#0f1320; color:#e8e8e8; border:1px solid #2a3050; border-radius:6px; }
+  button { background:#f5c542; color:#0a0a0a; font-weight:600; cursor:pointer; }
+  #stats { display:flex; flex-wrap:wrap; gap:8px; padding:12px; justify-content:center; }
+  .chip { padding:6px 12px; background:#0f1320; border:1px solid #2a3050; border-radius:20px; font-size:0.8rem; }
+  #grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px; padding:16px; }
+  .vault { background:linear-gradient(160deg,#0f1320,#0a0e18); border:1px solid #2a3050; border-radius:10px; padding:14px; }
+  .vault .no { color:#f5c542; font-size:0.7rem; letter-spacing:2px; }
+  .vault .name { font-weight:600; margin:6px 0 4px; }
+  .vault .crown { color:#7a8aaa; font-size:0.82rem; }
+  .vault .cat { display:inline-block; margin-top:8px; padding:2px 8px; background:#1a2035; border-radius:10px; font-size:0.7rem; color:#9ab; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🔱 ETERNAL HUB</h1>
+  <div class="sub">Symbolic Vault Registry — 815 Tech Crowns</div>
+</header>
+<div id="login">
+  <input id="u" placeholder="username" value="don" />
+  <input id="p" type="password" placeholder="password" />
+  <button onclick="doLogin()">Unlock</button>
+</div>
+<div id="stats"></div>
+<div id="grid"></div>
+
+<script>
+const API = '';
+let token = '';
+
+async function doLogin() {
+  const r = await fetch(API + '/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username: u.value, password: p.value })
+  });
+  const j = await r.json();
+  if (!j.token) return alert('Login failed');
+  token = j.token;
+  loadStats();
+  loadVaults();
+}
+
+async function loadStats() {
+  const r = await fetch(API + '/vaults/stats', { headers: { Authorization: 'Bearer ' + token }});
+  const j = await r.json();
+  const el = document.getElementById('stats');
+  el.innerHTML = '<div class="chip">Total: ' + j.total + '</div>' +
+    j.categories.map(c => '<div class="chip">' + c.category + ': ' + c.count + '</div>').join('');
+}
+
+async function loadVaults() {
+  const r = await fetch(API + '/vaults?limit=200', { headers: { Authorization: 'Bearer ' + token }});
+  const j = await r.json();
+  document.getElementById('grid').innerHTML = j.vaults.map(v =>
+    '<div class="vault"><div class="no">VAULT ' + v.vault_no + '</div>' +
+    '<div class="name">' + v.vault_name + '</div>' +
+    '<div class="crown">' + v.tech_crown + '</div>' +
+    '<span class="cat">' + (v.category || '—') + '</span></div>'
+  ).join('');
+}
+</script>
+</body>
+</html>
+

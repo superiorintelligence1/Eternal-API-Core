@@ -20,13 +20,14 @@ app.use('/rails', railsRouter);
 app.use('/whitelist', whitelistRouter);
 app.use('/ticker', tickerRouter);
 app.use('/vaults', requireAuth, vaultsRouter);  // 🔒 now protected
+app.use(require('express').static(require('path').join(__dirname, '..', 'public')));
 
 app.use(function(err, req, res, next) {
   const status = err.statusCode || 500;
   res.status(status).json({ error: err.message || 'Internal error' });
 });
 
-const PORT = process.env.PORT || 5061;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, function() {
   console.log('[eternal-api-core] listening on ' + PORT);
 });
