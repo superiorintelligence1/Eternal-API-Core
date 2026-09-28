@@ -1,5 +1,7 @@
 const express = require('express');
 const auth = require('./auth/routes');
+const loginRouter = require('./auth/login');
+const { requireAuth } = require('./auth/middleware');
 const railsRouter = require('./rails/routes');
 const whitelistRouter = require('./whitelist/routes');
 const tickerRouter = require('./ticker/routes');
@@ -12,11 +14,12 @@ app.get('/health', function(req, res) {
   res.json({ status: 'ok', service: 'eternal-api-core', version: '1.0' });
 });
 
+app.use('/auth', loginRouter);
 app.use('/auth', auth.router);
 app.use('/rails', railsRouter);
 app.use('/whitelist', whitelistRouter);
 app.use('/ticker', tickerRouter);
-app.use('/vaults', vaultsRouter);
+app.use('/vaults', requireAuth, vaultsRouter);  // 🔒 now protected
 
 app.use(function(err, req, res, next) {
   const status = err.statusCode || 500;
